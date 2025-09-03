@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function getMoviesCollectionByList(list, page) {
-  const url = `http://localhost:3001/movies/list`;
+  const url = `${import.meta.env.VITE_BACKEND_URL}/movies/list`;
 
   try {
     const response = await axios.get(url, { params: { list, page } });
@@ -16,7 +16,7 @@ export async function getMoviesCollectionByList(list, page) {
 }
 
 export async function getMovieDetails(movieId) {
-  const url = `http://localhost:3001/movies/details`;
+  const url = `${import.meta.env.VITE_BACKEND_URL}/movies/details`;
 
   try {
     const response = await axios.get(url, { params: { movieId } });

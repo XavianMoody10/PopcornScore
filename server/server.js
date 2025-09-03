@@ -9,9 +9,13 @@ import reviewsRoute from "./src/routes/reviews.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const CLIENTURL = process.env.CLIENT_URL;
+
+// Bypass proxy
+app.set("trust proxy", true);
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: CLIENTURL }));
 app.use(express.json());
 
 // Routes

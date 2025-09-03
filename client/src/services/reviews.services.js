@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function postReview(data) {
-  const url = "http://localhost:3001/review";
+  const url = `${import.meta.env.VITE_BACKEND_URL}/review`;
 
   const { mediaId, title, review, rating } = data;
 
@@ -34,7 +34,7 @@ export async function postReview(data) {
 }
 
 export async function getReviews(mediaType, mediaId) {
-  const url = "http://localhost:3001/review";
+  const url = `${import.meta.env.VITE_BACKEND_URL}/review`;
 
   try {
     if (!mediaType) {
