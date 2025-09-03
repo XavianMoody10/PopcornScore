@@ -3,6 +3,8 @@ import trendingMoviesMockdata from "./mockdata/trendingMovies.mockdata.js";
 import nowPlayingMoviesMockdata from "./mockdata/nowPlayingMovies.mockdata.js";
 import trendingTVShowsMockdata from "./mockdata/trendingTVShows.mockdata.js";
 import airingTodayTVShowsMockdata from "./mockdata/airingTodayTVShows.mockdata.js";
+import tvShowDetailsMockdata from "./mockdata/tvShowDetails.mockdata.js";
+import movieDetailsMockdata from "./mockdata/movieDetails.mockdata.js";
 
 export const handlers = [
   http.get("https://api.themoviedb.org/3/trending/movie/day", async () => {
@@ -121,5 +123,33 @@ export const handlers = [
       },
       { status: 400 }
     );
+  }),
+
+  http.get("https://api.themoviedb.org/3/tv/244808", async () => {
+    await delay(3000);
+    return HttpResponse.json(tvShowDetailsMockdata);
+
+    // return HttpResponse.json(
+    //   {
+    //     status_code: 7,
+    //     status_message: "This is an error message",
+    //     success: false,
+    //   },
+    //   { status: 400 }
+    // );
+  }),
+
+  http.get("https://api.themoviedb.org/3/movie/755898", async () => {
+    await delay(3000);
+    return HttpResponse.json(movieDetailsMockdata);
+
+    // return HttpResponse.json(
+    //   {
+    //     status_code: 7,
+    //     status_message: "This is an error message",
+    //     success: false,
+    //   },
+    //   { status: 400 }
+    // );
   }),
 ];

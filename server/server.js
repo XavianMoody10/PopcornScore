@@ -5,6 +5,7 @@ import { initiatMockServiceWorker } from "./src/mocks/node.js";
 import trendingRoute from "./src/routes/trending.route.js";
 import moviesRoute from "./src/routes/movies.route.js";
 import tvShowsRoute from "./src/routes/tvShows.route.js";
+import reviewsRoute from "./src/routes/reviews.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/trending", trendingRoute);
 app.use("/movies", moviesRoute);
 app.use("/tv_shows", tvShowsRoute);
+app.use("/review", reviewsRoute);
 
 // Start Mock Service Worker
 initiatMockServiceWorker();

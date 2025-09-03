@@ -9,6 +9,7 @@ import { Home } from "./pages/Home/Home";
 import { Movies } from "./pages/Movies/Movies";
 import { Details } from "./pages/Details/Details";
 import { TVShows } from "./pages/TVShows/TVShows";
+import { PageSuccessMessageProvider } from "./contexts/PageSuccessMessageContext";
 
 // Create a client
 export const queryClient = new QueryClient();
@@ -28,7 +29,9 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <PageSuccessMessageProvider>
+        <RouterProvider router={router} />
+      </PageSuccessMessageProvider>
     </QueryClientProvider>
   );
 };

@@ -1,4 +1,3 @@
-import { Squash as Hamburger } from "hamburger-react";
 import { useFetchTrendingMedia } from "../../hooks/useFetchTrendingMedia";
 import { useFetchTVShowsByList } from "../../hooks/useFetchTVShowsByList";
 import { MediaBackdropSlider } from "../../components/MediaBackdropSlider/MediaBackdropSlider";
@@ -7,6 +6,7 @@ import { MediaBackdropErrorOverlay } from "../../components/MediaBackdropErrorOv
 import { MediaPosterSlider } from "../../components/MediaPosterSlider/MediaPosterSlider";
 import { MediaPosterLoadingOverlay } from "../../components/MediaPosterLoadingOverlay/MediaPosterLoadingOverlay";
 import { MediaPosterErrorOverlay } from "../../components/MediaPosterErrorOverlay/MediaPosterErrorOverlay";
+import { Header } from "../../layouts/Header/Header";
 
 export const TVShows = () => {
   const trendingQuery = useFetchTrendingMedia("tv_shows");
@@ -14,14 +14,11 @@ export const TVShows = () => {
   const onTheAirQuery = useFetchTVShowsByList("on_the_air", 1);
   const popularQuery = useFetchTVShowsByList("popular", 1);
   const topRatedQuery = useFetchTVShowsByList("top_rated", 1);
+  const pathToDetails = "/details/tv_shows/";
 
   return (
     <>
-      <header className=" fixed top-0 w-full z-10 py-3 bg-creamy-white">
-        <div className=" w-[90%] flex justify-end max-w-[1400px] mx-auto">
-          <Hamburger size={23} />
-        </div>
-      </header>
+      <Header />
 
       <main className=" min-h-screen bg-creamy-white pt-[80px] pb-10 space-y-12">
         <section className=" relative">
@@ -41,7 +38,10 @@ export const TVShows = () => {
             <h2 className=" text-2xl font-bold">Now Playing</h2>
 
             <div className=" min-h-[300px] relative">
-              <MediaPosterSlider results={airingTodayQuery.data?.results} />
+              <MediaPosterSlider
+                results={airingTodayQuery.data?.results}
+                pathToDetails={pathToDetails}
+              />
               <MediaPosterLoadingOverlay
                 isLoading={airingTodayQuery.isLoading}
               />
@@ -59,7 +59,10 @@ export const TVShows = () => {
             <h2 className=" text-2xl font-bold">Popular</h2>
 
             <div className=" min-h-[300px] relative">
-              <MediaPosterSlider results={onTheAirQuery.data?.results} />
+              <MediaPosterSlider
+                results={onTheAirQuery.data?.results}
+                pathToDetails={pathToDetails}
+              />
               <MediaPosterLoadingOverlay isLoading={onTheAirQuery.isLoading} />
               {onTheAirQuery.error && (
                 <MediaPosterErrorOverlay
@@ -75,7 +78,10 @@ export const TVShows = () => {
             <h2 className=" text-2xl font-bold">Top Rated</h2>
 
             <div className=" min-h-[300px] relative">
-              <MediaPosterSlider results={popularQuery.data?.results} />
+              <MediaPosterSlider
+                results={popularQuery.data?.results}
+                pathToDetails={pathToDetails}
+              />
               <MediaPosterLoadingOverlay isLoading={popularQuery.isLoading} />
               {popularQuery.error && (
                 <MediaPosterErrorOverlay
@@ -91,7 +97,10 @@ export const TVShows = () => {
             <h2 className=" text-2xl font-bold">Upcoming</h2>
 
             <div className=" min-h-[300px] relative">
-              <MediaPosterSlider results={topRatedQuery.data?.results} />
+              <MediaPosterSlider
+                results={topRatedQuery.data?.results}
+                pathToDetails={pathToDetails}
+              />
               <MediaPosterLoadingOverlay isLoading={topRatedQuery.isLoading} />
               {topRatedQuery.error && (
                 <MediaPosterErrorOverlay

@@ -2,14 +2,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { MediaPoster } from "../MediaPoster/MediaPoster";
 
-export const MediaPosterSlider = ({ results }) => {
+export const MediaPosterSlider = ({ results, pathToDetails }) => {
   const slides = results?.map((media) => {
     return (
       <SwiperSlide key={media.id}>
         <MediaPoster
           title={media.title || media.name}
           poster_path={media.poster_path}
-          pathToDetails={`/details/movie/${media.id}`}
+          pathToDetails={pathToDetails + media.id}
         />
       </SwiperSlide>
     );

@@ -27,4 +27,27 @@ router.get("/list", async (req, res) => {
   }
 });
 
+router.get("/details", async (req, res) => {
+  const { seriesId } = req.query;
+
+  const url = `https://api.themoviedb.org/3/tv/${seriesId}`;
+
+  try {
+    const response = await axios.get(url, {
+      params: {
+        language: "en-US",
+      },
+      headers: {
+        Authorization: process.env.API_KEY,
+      },
+    });
+    res.send(response.data);
+  } catch (error) {
+    const status = error?.response?.status;
+    const data = error?.response?.data;
+    res.status(status || 400).send("Error getting TV show details");
+    console.log(data);
+  }
+});
+
 export default router;

@@ -14,6 +14,7 @@ export const Movies = () => {
   const popularQuery = useFetchMoviesByList("popular", 1);
   const topRatedQuery = useFetchMoviesByList("top_rated", 1);
   const upcomingQuery = useFetchMoviesByList("upcoming", 1);
+  const pathToDetails = "/details/movies/";
 
   return (
     <>
@@ -41,7 +42,10 @@ export const Movies = () => {
             <h2 className=" text-2xl font-bold">Now Playing</h2>
 
             <div className=" min-h-[300px] relative">
-              <MediaPosterSlider results={nowPlayingQuery.data?.results} />
+              <MediaPosterSlider
+                results={nowPlayingQuery.data?.results}
+                pathToDetails={pathToDetails}
+              />
               <MediaPosterLoadingOverlay
                 isLoading={nowPlayingQuery.isLoading}
               />
