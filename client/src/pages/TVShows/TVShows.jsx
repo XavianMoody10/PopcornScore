@@ -20,7 +20,7 @@ export const TVShows = () => {
     <>
       <Header />
 
-      <main className=" min-h-screen bg-creamy-white pt-[80px] pb-10 space-y-12">
+      <main className=" min-h-screen bg-creamy-white py-5 space-y-12">
         <section className=" relative">
           <div className=" h-[700px] w-[90%] max-w-[1400px] mx-auto relative">
             <MediaBackdropSlider results={trendingQuery?.data?.results} />

@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Outlet,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -10,6 +11,8 @@ import { Movies } from "./pages/Movies/Movies";
 import { Details } from "./pages/Details/Details";
 import { TVShows } from "./pages/TVShows/TVShows";
 import { PageSuccessMessageProvider } from "./contexts/PageSuccessMessageContext";
+import { SideNavigation } from "./layouts/SideNavigation/SideNavigation";
+import { SideNavigationProvider } from "./contexts/SideNavigationContext";
 
 // Create a client
 export const queryClient = new QueryClient();
@@ -19,10 +22,19 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route index element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/tv-shows" element={<TVShows />} />
-        <Route path="/details/:mediaType/:mediaId" element={<Details />} />
+        <Route
+          element={
+            <>
+              <SideNavigation />
+              <Outlet />
+            </>
+          }
+        >
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/tv-shows" element={<TVShows />} />
+          <Route path="/details/:mediaType/:mediaId" element={<Details />} />
+        </Route>
       </Route>
     )
   );
@@ -30,7 +42,9 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <PageSuccessMessageProvider>
-        <RouterProvider router={router} />
+        <SideNavigationProvider>
+          <RouterProvider router={router} />
+        </SideNavigationProvider>
       </PageSuccessMessageProvider>
     </QueryClientProvider>
   );

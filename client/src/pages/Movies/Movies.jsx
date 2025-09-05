@@ -7,6 +7,7 @@ import { MediaBackdropErrorOverlay } from "../../components/MediaBackdropErrorOv
 import { MediaPosterSlider } from "../../components/MediaPosterSlider/MediaPosterSlider";
 import { MediaPosterLoadingOverlay } from "../../components/MediaPosterLoadingOverlay/MediaPosterLoadingOverlay";
 import { MediaPosterErrorOverlay } from "../../components/MediaPosterErrorOverlay/MediaPosterErrorOverlay";
+import { Header } from "../../layouts/Header/Header";
 
 export const Movies = () => {
   const trendingQuery = useFetchTrendingMedia("movies");
@@ -18,13 +19,9 @@ export const Movies = () => {
 
   return (
     <>
-      <header className=" fixed top-0 w-full z-10 py-3 bg-creamy-white">
-        <div className=" w-[90%] flex justify-end max-w-[1400px] mx-auto">
-          <Hamburger size={23} />
-        </div>
-      </header>
+      <Header />
 
-      <main className=" min-h-screen bg-creamy-white pt-[80px] pb-10 space-y-12">
+      <main className=" min-h-screen bg-creamy-white py-5 space-y-12">
         <section className=" relative">
           <div className=" h-[700px] w-[90%] max-w-[1400px] mx-auto relative">
             <MediaBackdropSlider results={trendingQuery?.data?.results} />
